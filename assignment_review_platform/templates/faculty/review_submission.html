@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Review Interface</h2>
+    <div class="mb-6">
+        <h3 class="font-semibold mb-2">Student Submission Preview</h3>
+        <div class="border p-4 rounded">
+            [Content of student's work]
+        </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="feedback" class="block font-semibold mb-2">Feedback Comments</label>
+            <textarea id="feedback" name="comment" rows="4" class="w-full p-2 border rounded"></textarea>
+        </div>
+        <div class="flex space-x-4">
+            <button type="submit" name="status" value="accepted" class="flex-1 bg-green-500 text-white py-2 rounded hover:bg-green-600">Accept Submission</button>
+            <button type="submit" name="status" value="needs_modification" class="flex-1 bg-red-500 text-white py-2 rounded hover:bg-red-600">Request Modifications</button>
+        </div>
+    </form>
+    <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-4">Submit Review</button>
+</div>
+{% endblock %}

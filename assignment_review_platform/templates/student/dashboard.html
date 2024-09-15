@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Student Dashboard</h2>
+    <div class="grid grid-cols-2 gap-4 mb-6">
+        <div>
+            <h3 class="font-semibold mb-2">Upcoming Assignments</h3>
+            <ul>
+                {% for assignment in upcoming_assignments %}
+                <li>{{ assignment.title }} - Due {{ assignment.due_date|date:"n/j" }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-semibold mb-2">Recent Submissions</h3>
+            <ul>
+                {% for submission in recent_submissions %}
+                <li>{{ submission.assignment.title }} - {{ submission.submitted_at|date:"n/j" }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <a href="{% url 'student:submit_assignment' assignment_id=1 %}" class="block w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 text-center">Upload New Assignment</a>
+    </div>
+</div>
+{% endblock %}

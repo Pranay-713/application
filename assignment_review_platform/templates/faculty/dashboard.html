@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Faculty Dashboard</h2>
+    <div class="grid grid-cols-2 gap-4 mb-6">
+        <div>
+            <h3 class="font-semibold mb-2">Pending Reviews</h3>
+            <ul>
+                {% for submission in pending_reviews %}
+                <li>{{ submission.assignment.title }} ({{ submission.student.username }}) - Due {{ submission.assignment.due_date|date:"n/j" }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-semibold mb-2">Manage Courses</h3>
+            <ul>
+                {% for course in courses %}
+                <li>{{ course.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <button class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Create New Assignment</button>
+        <div class="grid grid-cols-2 gap-4">
+            <button class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">User Management</button>
+            <button class="bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600">View Reports</button>
+        </div>
+        <button class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">Assignment History & Modifications</button>
+    </div>
+</div>
+{% endblock %}

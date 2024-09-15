@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto text-center">
+    <h1 class="text-3xl font-bold mb-6">Welcome to the Assignment Review Platform</h1>
+    <div class="space-y-4">
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                <a href="{% url 'faculty:dashboard' %}" class="block w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">Faculty Dashboard</a>
+            {% else %}
+                <a href="{% url 'student:dashboard' %}" class="block w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Student Dashboard</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="block w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
